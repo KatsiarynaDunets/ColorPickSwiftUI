@@ -7,82 +7,93 @@
 
 import SwiftUI
 import CoreData
+import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    @State private var red = Double.random(in: 0...255)
+    @State private var green = Double.random(in: 0...255)
+    @State private var blue = Double.random(in: 0...255)
+    
+    @FocusState private var focusedField: Field?
+    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
+        
+        ZStack {
+            Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255)
+                .ignoresSafeArea()
+            
+            VStack {
+                ColorView(red: red, green: green, blue: blue)
+                    .padding([.top, .bottom], 25)
+                
+                ColorSliderView(sliderValue: $red, tintColor: .red)
+                    .focused($focusedField, equals: .red)
+                ColorSliderView(sliderValue: $green, tintColor: .green)
+                    .focused($focusedField, equals: .green)
+                ColorSliderView(sliderValue: $blue, tintColor: .blue)
+                    .focused($focusedField, equals: .blue)
+                Spacer()
             }
+            .padding()
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                ToolbarItemGroup (placement: .keyboard) {
+                    Button(action: previousField) {
+                        Image(systemName: "chevron.up")
+                    }
+                    Button(action: nextField) {
+                        Image(systemName: "chevron.down")
+                    }
+                    Spacer()
+                    Button("Done") {
+                        focusedField = nil
                     }
                 }
             }
-            Text("Select an item")
+        }
+        .onTapGesture {
+            focusedField = nil
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    
+    private func previousField() {
+        switch focusedField {
+        case .red:
+            focusedField = .blue
+        case .green:
+            focusedField = .red
+        case .blue:
+            focusedField = .green
+        case .none:
+            focusedField = nil
         }
     }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    
+    private func nextField() {
+        switch focusedField {
+        case .red:
+            focusedField = .green
+        case .green:
+            focusedField = .blue
+        case .blue:
+            focusedField = .red
+        case .none:
+            focusedField = nil
         }
+    }
+    
+}
+
+extension ContentView {
+    enum Field {
+        case red
+        case green
+        case blue
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+            .previewInterfaceOrientation(.portrait)
     }
 }
