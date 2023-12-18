@@ -20,6 +20,7 @@
 		5285B72D2B2A6105006FA29E /* ColorValueTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285B72C2B2A6105006FA29E /* ColorValueTextView.swift */; };
 		5285B72F2B2A611F006FA29E /* ColorValueTFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285B72E2B2A611F006FA29E /* ColorValueTFView.swift */; };
 		5285B7312B2A6137006FA29E /* ColorSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285B7302B2A6137006FA29E /* ColorSliderView.swift */; };
+		5285B7332B310085006FA29E /* SliderValueTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285B7322B310085006FA29E /* SliderValueTF.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		5285B72C2B2A6105006FA29E /* ColorValueTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorValueTextView.swift; sourceTree = "<group>"; };
 		5285B72E2B2A611F006FA29E /* ColorValueTFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorValueTFView.swift; sourceTree = "<group>"; };
 		5285B7302B2A6137006FA29E /* ColorSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSliderView.swift; sourceTree = "<group>"; };
+		5285B7322B310085006FA29E /* SliderValueTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderValueTF.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				5285B72C2B2A6105006FA29E /* ColorValueTextView.swift */,
 				5285B72E2B2A611F006FA29E /* ColorValueTFView.swift */,
 				5285B7302B2A6137006FA29E /* ColorSliderView.swift */,
+				5285B7322B310085006FA29E /* SliderValueTF.swift */,
 				5285B7042B2A6003006FA29E /* Persistence.swift */,
 				5285B7062B2A6003006FA29E /* ColorPickSwiftUI.xcdatamodeld */,
 				5285B7012B2A6003006FA29E /* Preview Content */,
@@ -279,6 +282,7 @@
 				5285B6FE2B2A6001006FA29E /* ContentView.swift in Sources */,
 				5285B7082B2A6003006FA29E /* ColorPickSwiftUI.xcdatamodeld in Sources */,
 				5285B72F2B2A611F006FA29E /* ColorValueTFView.swift in Sources */,
+				5285B7332B310085006FA29E /* SliderValueTF.swift in Sources */,
 				5285B72D2B2A6105006FA29E /* ColorValueTextView.swift in Sources */,
 				5285B7312B2A6137006FA29E /* ColorSliderView.swift in Sources */,
 				5285B6FC2B2A6001006FA29E /* ColorPickSwiftUIApp.swift in Sources */,

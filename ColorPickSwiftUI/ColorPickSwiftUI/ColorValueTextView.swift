@@ -21,7 +21,7 @@ struct ColorValueTextView: View {
 struct ColorValueTextView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Color.gray
+            Color.black
             ColorValueTextView(colorValue: 12)
         }
     }

@@ -15,7 +15,7 @@ struct ColorView: View {
     var body: some View {
         Color(red: red / 255, green: green / 255, blue: blue / 255)
             .cornerRadius(16)
-            .frame(height: 100)
+            .frame(height: 200)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(.white, lineWidth: 2)
@@ -25,6 +25,9 @@ struct ColorView: View {
 
 struct ColorView_Previews: PreviewProvider {
     static var previews: some View {
-        ColorView(red: 240, green: 240, blue: 240)
+        ZStack {
+            Color(.black)
+            ColorView(red: 240, green: 240, blue: 240)
+        }
     }
 }

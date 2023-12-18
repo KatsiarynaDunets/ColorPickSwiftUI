@@ -33,6 +33,8 @@ struct ColorSliderView: View {
 
 struct ColorSliderView_Previews: PreviewProvider {
     static var previews: some View {
-        ColorSliderView(sliderValue: .constant(123), tintColor: .purple)
+        ZStack { Color(.black)
+            ColorSliderView(sliderValue: .constant(100), tintColor: .purple)
+        }
     }
 }
